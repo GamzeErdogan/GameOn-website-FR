@@ -250,6 +250,9 @@ footer {
     float: right;
     display: block;
   }
+  .topnav.responsive a{
+    margin-right: 20px;
+  }
   .topnav{
     gap: 0;
   }
@@ -345,6 +348,7 @@ label {
   display: inline-block;
   margin-bottom: 11px;
 }
+
 input {
   padding: 8px;
   border: 0.8px solid #ccc;

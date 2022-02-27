@@ -20,4 +20,23 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+const nameInput = document.getElementById('first');
+const alertNameLabel = document.getElementById('alertMessage_name');
+nameInput.addEventListener('input', function(event){
+  
+  if(/([A-Z])/gi.test(event.target.value) && event.target.value.length > 2){
+      alertNameLabel.textContent = 'dogru girdiniz.';
+      nameInput.style.border ='none';
+      alertNameLabel.style.color = 'white';
+  }else if (event.target.value==null){
+      alertNameLabel.textContent = 'Ecrivez votre prenom';
+  
+  } else {
+      nameInput.style.border ='2px solid red';
+      alertNameLabel.textContent = 'Prenom Invalide';
+      alertNameLabel.style.color = 'red';
+
+  }
+});
+
 
