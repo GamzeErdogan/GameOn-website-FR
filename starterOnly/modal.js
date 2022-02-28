@@ -83,5 +83,23 @@ const alertMessage_email = document.getElementById('alertMessage_email');
       return false;
     }
   });
+  //validation pour date de naissance
+  const birthdate = document.getElementById('birthdate');
+  const alertMessage_date = document.getElementById('alertMessage_date');
+
+  birthdate.addEventListener('input',function(eventDate){
+    const givenDate = new Date(eventDate.target.value);
+    const currentDate = new Date();
+      if(givenDate > currentDate){
+        alertMessage_date.textContent = 'La date Invalide';
+        alertMessage_date.style.fontSize = '14px';
+        alertMessage_date.style.color = 'red';
+        birthdate.style.border = '2px solid red';
+      } else{
+        alertMessage_date.textContent = 'La date valide';
+        alertMessage_date.style.color = 'green';
+        birthdate.style.border = 'none';
+      };
+  });
 
 
