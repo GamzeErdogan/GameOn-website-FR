@@ -26,13 +26,13 @@ p {
   margin: 3.5%;
   display: flex;
   justify-content: space-between;
-  gap: 70px;
-
+  gap:30px;
 }
 .topnav a {
   float: left;
   display: block;
-  color: #ff0000;
+  color: black;
+  font-size: 20px;
   text-align: center;
   padding: 12px 12px;
   margin: 5px;
@@ -51,7 +51,6 @@ p {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
-  text-decoration: underline white;
   text-underline-offset: 7px;
 }
 
@@ -164,9 +163,17 @@ footer {
   .topnav a.icon {
     float: right;
     display: block;
-    color: #ff0000;
   }
-  .topnav.responsive {position: relative;}
+  .topnav.responsive .main-navbar {
+    position: absolute;
+    z-index: 100;
+    top: 25px;
+    right: 20px;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 15px;
+    animation: modalopen .5s ease-out;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -177,6 +184,22 @@ footer {
     display: block;
     text-align: left;
     text-decoration: none;
+  }
+  #icon-menu{
+      top: 24px;
+      position: absolute;
+      right: 30px;
+  }
+  #icon-menu:active{
+    animation: modalopen 2s ease-in-out;
+  }
+  
+  .main-navbar{
+    top: 50px;
+    left: 20px;
+    z-index: 1;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 }
 @media screen and (max-width:924px) {
@@ -239,11 +262,14 @@ footer {
 
   @media screen and (max-width:768px) {
     .hero-headline{
-      font-size: 60px;
+      font-size: 50px;
       font-weight: bold;
     }
+    #icon-menu{
+      top: 10px;
+      
   }
-
+  }
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
@@ -266,13 +292,13 @@ footer {
     height: 230px;
   }
   .hero-headline{
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     text-align: justify;
     
   }
   .hero-text{
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
     margin-top: 30px;
     margin-bottom: 20px;
@@ -285,9 +311,6 @@ footer {
     margin: 0;
   }
 } 
-
-
-
 
 
 /* Modal form */
@@ -346,7 +369,7 @@ label {
   font-size: 17px;
   font-weight: normal;
   display: inline-block;
-  margin-bottom: 11px;
+  /* margin-bottom: 11px; */
 }
 
 input {
@@ -475,6 +498,17 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+.btn-submit {
+  font-size: 18px;
+  left: 106px;
+  background-color: red;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 40px 12px 39px;
+  margin: 10px;
+  color: white;
+  position: relative;
+}
 /* .btn-submit,
 .btn-signup {
   background: #fe142f;
@@ -563,7 +597,7 @@ input[data-error]::after {
 @keyframes modalopen {
   from {
     opacity: 0;
-    transform: translateY(-150px);
+    transform: translateX(+150px);
   }
   to {
     opacity: 1;

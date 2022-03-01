@@ -1,11 +1,7 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+  var topnav = document.getElementById("myTopnav");
+  topnav.classList.toggle('responsive');
+};
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
@@ -91,7 +87,7 @@ const alertMessage_email = document.getElementById('alertMessage_email');
     const givenDate = new Date(eventDate.target.value);
     const currentDate = new Date();
       if(givenDate > currentDate){
-        alertMessage_date.textContent = 'La date Invalide';
+        alertMessage_date.textContent = 'Vous devez entrer votre date de naissance.';
         alertMessage_date.style.fontSize = '14px';
         alertMessage_date.style.color = 'red';
         birthdate.style.border = '2px solid red';
@@ -102,4 +98,27 @@ const alertMessage_email = document.getElementById('alertMessage_email');
       };
   });
 
+//validation pour howMany
 
+const howManyTimesInput = document.getElementById('quantity');
+const alertMessage_howMany = document.getElementById('alertMessage_howMany');
+  howManyTimesInput.addEventListener('input',function(event){
+    if(event.target.value==null){
+      alertMessage_howMany.textContent = 'Vous devez saisir une valeur numérique.';
+      console.log(event.target.value);
+    }
+  });
+
+
+// validation pour radio-box
+const alertMessage_radio = document.getElementById('alertMessage_radio');
+  for(var i=1; i<7; i++){
+    const id =['location'+[i]];
+    document.getElementById(id).addEventListener('input',function(eventRadio){
+      if(eventRadio.value==null){
+        alertMessage_radio.textContent = 'Vous devez choisir une option.';
+        alertMessage_radio.style.color= 'red';
+        alertMessage_radio.style.fontSize = '14px';
+      }
+  });
+};

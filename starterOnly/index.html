@@ -14,8 +14,8 @@
           <img alt="logo" src="Logo.png" width="auto" height="auto" />
       </div>
       <div class="main-navbar">
-    <!-- <a href="#" class="active"><span>Accueil</span></a> -->
-          <a class="active" href="#"><span>Détails de l'évènement</span></a>
+          <a href="#" class="active"><span>Accueil</span></a>
+          <a  href="#"><span>Détails de l'évènement</span></a>
           <a href="#"><span>À propos</span></a>
           <a href="#"><span>Contact</span></a>
           <a href="#"><span>Évènements passés</span></a>
@@ -107,6 +107,7 @@
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <!-- <label id="alertMessage_howMany"></label> -->
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -176,7 +177,8 @@
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
                   Portland</label
-                >
+                ><br>
+                <label id="alertMessage_radio"></label>
               </div>
 
               <div
