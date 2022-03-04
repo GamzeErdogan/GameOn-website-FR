@@ -16,7 +16,6 @@ body {
   font-family: var(--font-default);
   font-size: 18px;
 }
-
 p {
   margin-bottom: 0;
   padding: 0.5vw;
@@ -125,7 +124,27 @@ main {
   cursor: pointer;
   border: none;
 }
-
+#modal-close {
+  display :none;
+  margin-left: 40px;
+}
+.modal-close{
+  height :80vh;
+}
+.modal-close h1 {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    text-align: center;
+    font-weight: normal;
+    color: #f1f1f1;
+}
+.modal-close button {
+  margin: 0 auto;
+  font-weight: 700;
+}
 .modal-btn:hover {
   background: #3876ac;
 }
