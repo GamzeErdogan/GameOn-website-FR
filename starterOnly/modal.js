@@ -15,6 +15,10 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
+// hide modal form
+function hideModal() {
+  modalbg.style.display = "none";
+}
 
 // validation pour radio-box
 function  checkAllRadioButtons(){
@@ -33,8 +37,7 @@ function  checkAllRadioButtons(){
     alertMessage_radio.style.fontSize = '14px';
   }
 }
-
-
+ 
 // pour le submit bouton
 document.getElementById('formSubmitId').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -118,10 +121,11 @@ function validateFormCheck (){
   }
   
   document.getElementById('modal-close').addEventListener("click", function(event){
-    modalbg.style.display = "none"
+    modalbg.style.display = "none";
   });
   
   return isAllCorrect;
 }
-
-
+// Close the modal form when you click on the X.
+const closeBtn = document.querySelector(".close");
+closeBtn.addEventListener("click",hideModal);
