@@ -32,17 +32,21 @@ function  checkAllRadioButtons(){
   };
 
   if(!isSelected){
+    //if one of the option is not checked => error
     alertMessage_radio.textContent = 'Vous devez choisir une option.';
     alertMessage_radio.style.color= 'red';
     alertMessage_radio.style.fontSize = '14px';
   }
 }
- 
-// pour le submit bouton
+ // listening submit event on form element so function validate is run
+
 document.getElementById('formSubmitId').addEventListener('submit', (e) => {
   e.preventDefault();
   validateFormCheck()
 });
+
+ // if first.value is empty or first lenght is less than 2 characters
+// then error message is displayed
 
 function validateFormCheck (){
   let isAllCorrect = true;
@@ -70,8 +74,11 @@ function validateFormCheck (){
 
   const alertMessage_email = document.getElementById('alertMessage_email');
   const emailInput = document.getElementById('email');
+
+  // regex for email addres
+
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if(emailInput.value == "" || mailformat.test(emailInput.value)==false){
+  if(mailformat.test(emailInput.value)==false){
       alertMessage_email.textContent = "L`adresse électronique est Invalide.";
       alertMessage_email.style.color = 'red';
       alertMessage_email.style.fontSize = '14px';
@@ -79,13 +86,21 @@ function validateFormCheck (){
       emailInput.focus();
       isAllCorrect = false;
   }
-  
+  if(emailInput.value == ""){
+      alertMessage_email.textContent = "Veuillez entrez votre l'adresse électronique.";
+      alertMessage_email.style.color = 'red';
+      alertMessage_email.style.fontSize = '14px';
+      emailInput.style.border ='2px solid red';
+      emailInput.focus();
+      isAllCorrect = false;
+  }
   const birthdate = document.getElementById('birthdate');
   const alertMessage_date = document.getElementById('alertMessage_date');
   const givenDate = new Date(birthdate.value);
   const currentDate = new Date();
+  
   if((givenDate > currentDate) || birthdate.value == ""){
-    alertMessage_date.textContent = 'Vous devez entrer votre date de naissance.';
+    alertMessage_date.textContent = 'Veuillez entrez votre date de naissance.';
     alertMessage_date.style.fontSize = '14px';
     alertMessage_date.style.color = 'red';
     birthdate.style.border = '2px solid red';
