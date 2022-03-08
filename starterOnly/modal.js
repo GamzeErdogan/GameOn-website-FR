@@ -4,9 +4,16 @@ function editNav() {
 };
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+let modalbg = document.querySelector(".bground");
+let modalBtn = document.querySelectorAll(".modal-btn");
+let formData = document.querySelectorAll(".formData");
+let isFirstNameValide = false;
+let isSurNameValide = false;
+let isBirthDateValide = false;
+let isEmailValide = false;
+let isHowManyValide = false;
+let isRadioBoxValide = false;
+let isCheckBoxValide = false;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -18,6 +25,14 @@ function launchModal() {
 // hide modal form
 function hideModal() {
   modalbg.style.display = "none";
+  let allFormError = document.getElementsByClassName("formError");
+  let allInput = document.getElementById('formSubmitId').getElementsByClassName("text-control");
+  for (const formError of allFormError) {
+    formError.classList.add("hidden");
+  }
+  for (const input of allInput) {
+    input.value = "";
+  }
 }
 
 // validation pour radio-box
@@ -33,9 +48,11 @@ function  checkAllRadioButtons(){
 
   if(!isSelected){
     //if one of the option is not checked => error
-    alertMessage_radio.textContent = 'Vous devez choisir une option.';
-    alertMessage_radio.style.color= 'red';
-    alertMessage_radio.style.fontSize = '14px';
+    alertMessage_radio.classList.remove("hidden");
+    isRadioBoxValide= false;
+  } else{
+    alertMessage_radio.classList.add("hidden");
+    isRadioBoxValide =true;
   }
 }
  // listening submit event on form element so function validate is run
@@ -49,27 +66,28 @@ document.getElementById('formSubmitId').addEventListener('submit', (e) => {
 // then error message is displayed
 
 function validateFormCheck (){
-  let isAllCorrect = true;
+  
   const alertNameLabel = document.getElementById('alertMessage_name');
   const nameInput = document.getElementById('first');
   if(nameInput.value == "" || nameInput.value.length < 2){
-      alertNameLabel.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du prenom';
-      nameInput.style.border ='2px solid red';
-      alertNameLabel.style.color = 'red';
-      alertNameLabel.style.fontSize = '14px';
+      alertNameLabel.classList.remove("hidden");
       nameInput.focus();
-      isAllCorrect = false;
+      isFirstNameValide = false;
+    } else{
+      alertNameLabel.classList.add("hidden");
+      isFirstNameValide = true;
     }
 
   const alertSurNameLabel = document.getElementById('alertMessage_surName');
   const surNameInput = document.getElementById('last');
   if(surNameInput.value == "" || surNameInput.value.length < 2){
-      alertSurNameLabel.textContent = 'Veuillez entrer 2 caractères ou plus pour le champ du nom';
-      surNameInput.style.border ='2px solid red';
-      alertSurNameLabel.style.color = 'red';
-      alertSurNameLabel.style.fontSize = '14px';
+    alertSurNameLabel.classList.remove("hidden");
       surNameInput.focus();
-      isAllCorrect = false;
+      isSurNameValide = false;
+
+  } else{
+    alertSurNameLabel.classList.add("hidden");
+    isSurNameValide = true;
   }
 
   const alertMessage_email = document.getElementById('alertMessage_email');
@@ -78,45 +96,40 @@ function validateFormCheck (){
   // regex for email addres
 
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if(mailformat.test(emailInput.value)==false){
-      alertMessage_email.textContent = "L`adresse électronique est Invalide.";
-      alertMessage_email.style.color = 'red';
-      alertMessage_email.style.fontSize = '14px';
-      emailInput.style.border ='2px solid red';
+  if(emailInput.value == "" || mailformat.test(emailInput.value)==false){
+      alertMessage_email.classList.remove("hidden");
       emailInput.focus();
-      isAllCorrect = false;
+      isEmailValide = false;
+  }else{
+    alertMessage_email.classList.add("hidden");
+    isEmailValide = true;
   }
-  if(emailInput.value == ""){
-      alertMessage_email.textContent = "Veuillez entrez votre l'adresse électronique.";
-      alertMessage_email.style.color = 'red';
-      alertMessage_email.style.fontSize = '14px';
-      emailInput.style.border ='2px solid red';
-      emailInput.focus();
-      isAllCorrect = false;
-  }
+
+  
   const birthdate = document.getElementById('birthdate');
   const alertMessage_date = document.getElementById('alertMessage_date');
   const givenDate = new Date(birthdate.value);
   const currentDate = new Date();
-  
+
   if((givenDate > currentDate) || birthdate.value == ""){
-    alertMessage_date.textContent = 'Veuillez entrez votre date de naissance.';
-    alertMessage_date.style.fontSize = '14px';
-    alertMessage_date.style.color = 'red';
-    birthdate.style.border = '2px solid red';
+    alertMessage_date.classList.remove("hidden");
     birthdate.focus();
-    isAllCorrect = false;
+    isBirthDateValide = false;
+
+  }else{
+    alertMessage_date.classList.add("hidden");
+    isBirthDateValide = true;
   }
 
   const howManyTimesInput = document.getElementById('quantity');
   const alertMessage_howMany = document.getElementById('alertMessage_howMany');
   if(howManyTimesInput.value == "" || isNaN(howManyTimesInput.value)){
-    alertMessage_howMany.textContent = 'Vous devez saisir une valeur numérique.';
-    alertMessage_howMany.style.color = "red";
-    alertMessage_howMany.style.fontSize = "14px";
-    howManyTimesInput.style.border = "2px solid red";
+    alertMessage_howMany.classList.remove("hidden");
     howManyTimesInput.focus();
-    isAllCorrect = false;
+    isHowManyValide = false;
+  }else{
+    alertMessage_howMany.classList.add("hidden");
+    isHowManyValide = true;
   }
 
   checkAllRadioButtons();
@@ -124,13 +137,15 @@ function validateFormCheck (){
   const checkBox1 = document.getElementById('checkbox1');
   const alertMessage_checkBox1 = document.getElementById('alertMessage_checkBox1');
   if(checkBox1.checked==false ){
-    alertMessage_checkBox1.textContent = "Veuillez acceptez les conditions d'utilisation";
-    alertMessage_checkBox1.style.color = "red";
-    alertMessage_checkBox1.style.fontSize = "14px";
-    isAllCorrect = false;
+    alertMessage_checkBox1.classList.remove("hidden");
+    isCheckBoxValide = false;
+   
+  }else{
+    alertMessage_checkBox1.classList.add("hidden");
+    isCheckBoxValide = true;
   }
 
-  if (isAllCorrect){
+  if (isFirstNameValide && isSurNameValide && isBirthDateValide && isEmailValide && isHowManyValide && isRadioBoxValide && isCheckBoxValide ){
     document.getElementById('formSubmitId').style.display = "none";
     document.getElementById('modal-close').style.display = "block";
   }
@@ -139,7 +154,6 @@ function validateFormCheck (){
     modalbg.style.display = "none";
   });
   
-  return isAllCorrect;
 }
 // Close the modal form when you click on the X.
 const closeBtn = document.querySelector(".close");
