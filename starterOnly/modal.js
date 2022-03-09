@@ -71,10 +71,11 @@ function validateFormCheck (){
   const nameInput = document.getElementById('first');
   if(nameInput.value == "" || nameInput.value.length < 2){
       alertNameLabel.classList.remove("hidden");
-      nameInput.focus();
+      nameInput.style.border = "2px solid red";
       isFirstNameValide = false;
     } else{
       alertNameLabel.classList.add("hidden");
+      nameInput.style.border = "none";
       isFirstNameValide = true;
     }
 
@@ -82,11 +83,12 @@ function validateFormCheck (){
   const surNameInput = document.getElementById('last');
   if(surNameInput.value == "" || surNameInput.value.length < 2){
     alertSurNameLabel.classList.remove("hidden");
-      surNameInput.focus();
+    surNameInput.style.border = "2px solid red";
       isSurNameValide = false;
 
   } else{
     alertSurNameLabel.classList.add("hidden");
+    surNameInput.style.border = "none";
     isSurNameValide = true;
   }
 
@@ -98,14 +100,13 @@ function validateFormCheck (){
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if(emailInput.value == "" || mailformat.test(emailInput.value)==false){
       alertMessage_email.classList.remove("hidden");
-      emailInput.focus();
+      emailInput.style.border = "2px solid red";
       isEmailValide = false;
-  }else{
+  } else {
     alertMessage_email.classList.add("hidden");
+    emailInput.style.border = "none";
     isEmailValide = true;
   }
-
-  
   const birthdate = document.getElementById('birthdate');
   const alertMessage_date = document.getElementById('alertMessage_date');
   const givenDate = new Date(birthdate.value);
@@ -113,11 +114,11 @@ function validateFormCheck (){
 
   if((givenDate > currentDate) || birthdate.value == ""){
     alertMessage_date.classList.remove("hidden");
-    birthdate.focus();
+    birthdate.style.border = "2px solid red";
     isBirthDateValide = false;
-
-  }else{
+  } else {
     alertMessage_date.classList.add("hidden");
+    birthdate.style.border = "none";
     isBirthDateValide = true;
   }
 
@@ -125,10 +126,11 @@ function validateFormCheck (){
   const alertMessage_howMany = document.getElementById('alertMessage_howMany');
   if(howManyTimesInput.value == "" || isNaN(howManyTimesInput.value)){
     alertMessage_howMany.classList.remove("hidden");
-    howManyTimesInput.focus();
+    howManyTimesInput.style.border = "2px solid red";
     isHowManyValide = false;
   }else{
     alertMessage_howMany.classList.add("hidden");
+    howManyTimesInput.style.border = "none";
     isHowManyValide = true;
   }
 
@@ -140,7 +142,7 @@ function validateFormCheck (){
     alertMessage_checkBox1.classList.remove("hidden");
     isCheckBoxValide = false;
    
-  }else{
+  } else {
     alertMessage_checkBox1.classList.add("hidden");
     isCheckBoxValide = true;
   }
