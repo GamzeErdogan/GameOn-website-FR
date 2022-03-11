@@ -335,10 +335,14 @@ footer {
   .hero-img{
     margin: 0;
   }
+  .btn-submit {
+    left: 66px;
+  }
+
 } 
 
 
-/* Modal form */
+Modal form
 
 .button {
   background: #fe142f;
@@ -438,7 +442,7 @@ input[data-error]::after {
 .checkbox2-label {
   position: relative;
   margin-left: 36px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
 }
 .checkbox-label .checkbox-icon,
@@ -534,18 +538,7 @@ input[data-error]::after {
   color: white;
   position: relative;
 }
-/* .btn-submit,
-.btn-signup {
-  background: #fe142f;
-  display: block;
-  margin: 0 auto;
-  border-radius: 7px;
-  font-size: 1rem;
-  padding: 12px 82px;
-  color: #fff;
-  cursor: pointer;
-  border: 0;
-} */
+
 /* custom select styles */
 .custom-select {
   position: relative;

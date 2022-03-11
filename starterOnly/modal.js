@@ -33,9 +33,13 @@ function hideModal() {
   for (const input of allInput) {
     input.value = "";
   }
+  for (const input2 of allInput) {
+    input2.style.border = "none";
+  }
 }
 
-// validation pour radio-box
+// function //   validation for radio-box
+
 function  checkAllRadioButtons(){
   const alertMessage_radio = document.getElementById('alertMessage_radio');
   let isSelected = false;
